@@ -258,7 +258,19 @@ sub startup {
     $r->delete('/session')->to('session#destroy');
     $r->get('/login')->name('login')->to('session#create');
     $r->post('/login')->to('session#create');
-    $r->delete('/logout')->name('logout')->to('session#destroy');
+
+
+    # for oauth2 redirect_to, added by Choldrim
+    if ($auth_method eq "OAuth2"){
+        $r->get('/login/redirect_back')->to('DeepinSession#redirect_back');
+        $r->delete('/logout')->name('logout')->to('DeepinSession#destroy');
+    }
+    else{
+        $r->delete('/logout')->name('logout')->to('session#destroy');
+    }
+
+    #$r->delete('/logout')->name('logout')->to('session#destroy');
+
     $r->get('/response')->to('session#response');
     $auth->get('/session/test')->to('session#test');
 
