@@ -24,7 +24,13 @@
 		    </a>
 		</div>
 		<div class="text-muted text-center">Sponsor</div>
-	    % }
+	    % } elsif ($self->app->config->{'global'}->{'branding'} eq "deepin") {
+		<div class="text-right" id="sponsorbox">
+		    <a target="_blank" href="http://www.deepin.org" title="deepin">
+			<img alt="deepin" class="icons-sponsor_suse" src="images/deepin.png" />
+		    </a>
+		</div>
+        % }
 	</div>
     </div>
 </div>
